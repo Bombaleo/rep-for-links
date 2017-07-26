@@ -5,10 +5,10 @@
 		 <script>
 			 function check_pass() {
 				 if (document.getElementById('password').value ==
-								 document.getElementById('confirm_password').value) {
-						document.getElementById('submit').disabled = false;
-						document.getElementById('message').style.color = 'green';
-	 				 	document.getElementById('message').innerHTML = 'matching';
+							document.getElementById('confirm_password').value) {
+								document.getElementById('submit').disabled = false;
+								document.getElementById('message').style.color = 'green';
+	 				 			document.getElementById('message').innerHTML = 'matching';
 				 } else {
 						document.getElementById('submit').disabled = true
 						document.getElementById('message').style.color = 'red';
@@ -19,9 +19,9 @@
 	</head>
 	<body>
 		<div>
-		<h3>
-			Registration form.
-		</h3>
+			<h3>
+				Registration form.
+			</h3>
 		</div>
 		<form action="/signup" method="POST">
 			<table>
@@ -47,13 +47,11 @@
 					</td>
 					<td>
 	      		<input type="password" id="confirm_password" name="confirm_password" required value="" placeholder="Repeate password" onchange='check_pass();'/>
-
-				<span id='message'></span>
-		  	<input type="submit" name="submit"  value="Sign up" id="submit" disabled/>
-			</td>
-		</tr>
-	</table>
+						<span id='message'></span>
+				  	<input type="submit" name="submit"  value="Sign up" id="submit" disabled/>
+					</td>
+				</tr>
+			</table>
   	</form>
-
 	</body>
 </html>
