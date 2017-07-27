@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+  <div align="center">
+    <div>
+      <h3>Hey. Here you can leave your links to various sites.</br>But to get started authorize.</h3>
+    </div>
+    <form action="/submit" method="POST">
+      <input type="string" name="user[name]" required value="" placeholder="User name"/>
+      <input type="password" name="user[password]" value="" placeholder="password" />
+      <input type="submit" value="Sign in" />
+    </form>
+    <br/>
+    <div>
+      <form method="GET" action="/signup">
+         <label> Go to registration page <input type="submit" value="Signup"> </label>
+      </form>
+    </div>
+    <p>
+      Or you can sign in with github.
+    </p>
+    <div class="container login-form">
+      <form class="form-signin">
+        <img class='figure-caption github-octocat' width=20% height=20% src='https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png'></br>
+        <a class="btn btn-primary" href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= client_id %>" >Login with Github</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

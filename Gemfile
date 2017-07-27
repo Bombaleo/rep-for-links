@@ -1,0 +1,13 @@
+#Gemfile
+source 'https://rubygems.org'
+ruby '2.4.0'
+gem 'activerecord'
+gem 'sinatra'
+gem 'dotenv'
+gem 'sinatra-activerecord'
+gem 'json'
+gem 'oauth2'
+gem 'pg'
+gem 'rack'
+gem 'rest-client'
+gem 'rake'
