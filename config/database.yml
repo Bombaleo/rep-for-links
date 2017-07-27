@@ -3,4 +3,4 @@ development:
   database: develop
   username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
-host: localhost
+  host: localhost

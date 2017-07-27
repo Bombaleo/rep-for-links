@@ -7,14 +7,20 @@ require 'rest-client'
 require './config/environments'
 require 'rubygems'
 require 'json'
+require 'logger'
 
 Dotenv.load
 
 CLIENT_ID = ENV['GH_BASIC_CLIENT_ID']
 CLIENT_SECRET = ENV['GH_BASIC_SECRET_ID']
 
+URL_TO_GET_TOKEN = 'https://github.com/login/oauth/access_token'.freeze
+URL_API_GITHUB_USER = 'https://api.github.com/user'.freeze
+
 SIGN_UP_ERROR = 'User with this name olready exist.'.freeze
 SIGN_IN_ERROR = 'This user does not exist, please authorizate.'.freeze
+
+logger = Logger.new('logfile.log')
 
 use Rack::Session::Pool, cookie_only: false
 
@@ -23,16 +29,13 @@ def authenticated?
 end
 
 get '/' do
-  if authenticated?
-    redirect '/submit'
-  else
-    erb :auth, locals: { client_id: CLIENT_ID }
-  end
+  redirect '/submit' if authenticated?
+  erb :auth, locals: { client_id: CLIENT_ID }
 end
 
 get '/callback' do
   session_code = request.env['rack.request.query_hash']['code']
-  result = RestClient.post('https://github.com/login/oauth/access_token',
+  result = RestClient.post(URL_TO_GET_TOKEN,
                         { client_id: CLIENT_ID,
                          client_secret: CLIENT_SECRET,
                          code: session_code },
@@ -40,11 +43,11 @@ get '/callback' do
   session[:access_token] = JSON.parse(result)['access_token']
   access_token = session[:access_token]
   begin
-    auth_result = RestClient.get('https://api.github.com/user',
+    auth_result = RestClient.get(URL_API_GITHUB_USER,
                                  { params: { access_token: access_token },
                                   accept: :json })
   rescue => e
-    puts e
+    logger.error "Error authentication with github #{e}}"
     session[:access_token] = nil
   end
   auth_result = JSON.parse(auth_result)
@@ -71,13 +74,13 @@ post '/submit' do
   end
 end
 
-post '/delurl' do
+post '/deleteurl' do
   @user = User.find_by(name: params[:name])
   @user.urls.find_by(link: params[:link]).destroy
   erb :index
 end
 
-post '/addurl' do
+post '/appendurl' do
   @user = User.find_by(name: params[:name])
   @user.urls.create(params[:url])
   erb :index
@@ -100,6 +103,6 @@ post '/signup' do
 end
 
 get '/logout' do
-  session[:username] = nil  
+  session[:username] = nil
   redirect '/'
 end

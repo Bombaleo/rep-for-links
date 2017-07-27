@@ -15,7 +15,7 @@
 		  	<input type="string" name="user[name]" required value="" placeholder="User name"/>
 		  	<input type="password" name="user[password]" value="" placeholder="password" />
 		  	<input type="submit" value="Sign in" />
-	  	</form>
+			</form>
 			<br/>
 			<div>
 				<form method="GET" action="/signup">
@@ -26,7 +26,7 @@
 				Or you can sign in with github.
 			</p>
 			<div class="container login-form">
-	      <form class="form-signin">
+				<form class="form-signin">
 	        <img class='figure-caption github-octocat' width=20% height=20% src='https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png'></br>
 					<a class="btn btn-primary" href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= client_id %>" >Login with Github</a>
 	      </form>
