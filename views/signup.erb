@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		 <script src="check_pass.js" type="text/javascript"> </script>
-	</head>
-	<body>
-		<div>
-			<h3>
-				Registration form.
-			</h3>
-		</div>
-		<form action="/signup" method="POST">
-			<table>
-				<tr>
-					<td>
-						<label>name:</label>
-					</td>
-					<td>
-						<input type="text" name="user[name]" required value="" placeholder="Enter name" />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label> password </label>
-					</td>
-					<td>
-						<input type="password" id="password" name="user[password]" required value="" placeholder="Enter password "onchange='check_pass();'/>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label> confirm password:</label>
-					</td>
-					<td>
-	      		<input type="password" id="confirm_password" name="confirm_password" required value="" placeholder="Repeate password" onchange='check_pass();'/>
-						<span id='message'></span>
-				  	<input type="submit" name="submit"  value="Sign up" id="submit" disabled/>
-					</td>
-				</tr>
-			</table>
-  	</form>
-	</body>
+<head>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	 <script src="check_pass.js" type="text/javascript"> </script>
+</head>
+<body>
+	<div>
+		<h3>
+			Registration form.
+		</h3>
+	</div>
+	<form action="/signup" method="POST">
+		<table>
+			<tr>
+				<td>
+					<label>name:</label>
+				</td>
+				<td>
+					<input type="text" name="user[name]" required value="" placeholder="Enter name" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label> password </label>
+				</td>
+				<td>
+					<input type="password" id="password" name="user[password]" required value="" placeholder="Enter password "onchange='check_pass();'/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label> confirm password:</label>
+				</td>
+				<td>
+					<input type="password" id="confirm_password" name="confirm_password" required value="" placeholder="Repeate password" onchange='check_pass();'/>
+					<span id='message'></span>
+					<input type="submit" name="submit"  value="Sign up" id="submit" disabled/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
 </html>

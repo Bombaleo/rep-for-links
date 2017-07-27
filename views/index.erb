@@ -1,72 +1,49 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<style>
-			div {
-				background: #20B2AA;
-				padding: 10px;
-				border-radius: 5px;
-				white-space: normal;
-			}
-			.div1 {
-				display:inline-block;
-				overflow-x:hidden;
-				padding: 10px;
-				border-radius: 5px;
-				border: 1px solid #2077AA;
-				width: 40%;
-				overflow-x:hidden;
-				white-space: normal;
-				word-wrap:break-word;
-      }
-      .div2 {
-        display:inline-block;
-      }
-      #left { text-align: left; }
-      #right { text-align: right; }
-    </style>
-	</head>
-	<body>
-		<div align = "center">
-			<h3>Your links.</h3>
-			<table width=40% align="center">
-				<% @user.urls.each do |elem| %>
-					<tr>
-						<td>
-							<div id="left" class="div1">
-                <a href=<%=elem.link %>> <%=elem.link %> </a> </br>
-								<p>
-									<%= elem.description %>
-								</p>
-							</div>
-						</td>
-						<td>
-							<div  id="right" class="div2">
-									<form  method="POST" action="/deleteurl">
-										<input type="hidden" name="link" value=<%= elem.link %> >
-										<input type="hidden" name="name" value=<%= @user.name %> >
-										<input type="submit" value="Delete">
-									</form>
-							</div>
-						</td>
-					</tr>
-				<% end %>
-			<table/>
-			<h3>Add new link</h3>
-			<form method="POST" action="/appendurl">
-        <p>Link: <input type="text"required name="url[link]" ></p>
-        <p>Description:</p>
-				<p><textarea rows="5" cols="45" name="url[description]"></textarea></p>
-				<input type="hidden" name="name" value=<%= @user.name %> >
-        <input type="submit" value="Add">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<body>
+	<div align = "center">
+		<h3>Your links.</h3>
+		<table width=40% align="center">
+			<% @user.urls.each do |elem| %>
+				<tr>
+					<td>
+						<div id="left" class="div1">
+							<a href=<%=elem.link %>> <%=elem.link %> </a> </br>
+							<p>
+								<%= elem.description %>
+							</p>
+						</div>
+					</td>
+					<td>
+						<div  id="right" class="div2">
+							<form  method="POST" action="/deleteurl">
+								<input type="hidden" name="link" value=<%= elem.link %> >
+								<input type="hidden" name="name" value=<%= @user.name %> >
+								<input type="submit" value="Delete">
+							</form>
+						</div>
+					</td>
+				</tr>
+			<% end %>
+		<table/>
+		<h3>Add new link</h3>
+		<form method="POST" action="/appendurl">
+			<p>Link: <input type="text"required name="url[link]" ></p>
+			<p>Description:</p>
+			<p><textarea rows="5" cols="45" name="url[description]"></textarea></p>
+			<input type="hidden" name="name" value=<%= @user.name %> >
+			<input type="submit" value="Add">
+		</form>
+		<div align="right">
+			<p> <%= @user.name %> </p>
+			<form method="GET" action="/logout">
+				<input type="submit" value="Logout">
 			</form>
-			<div align="right">
-				<p> <%= @user.name %> </p>
-				<form method="GET" action="/logout">
-					<input type="submit" value="Logout">
-				</form>
-			</div>
 		</div>
-	</body>
+	</div>
+</body>
 </html>
